@@ -45,9 +45,9 @@ const ViewPublic = () => {
   useEffect(() => {
     getView();
   }, []);
-  const currentUrl = "https://snippetswap.onrender.com";
+  const currentUrl = "https://vercel-api-rose-two.vercel.app";
   function handleCopy() {
-    navigator.clipboard.writeText(`${currentUrl}/public-access/${id}`);
+    navigator.clipboard.writeText(`${currentUrl}/publicAccess/${id}`);
     setCopy(true);
     setTimeout(() => {
       setCopy(false);
@@ -179,7 +179,7 @@ const ViewPublic = () => {
                     type="text"
                     id="share"
                     name="share"
-                    value={`${currentUrl}/public-access/${id}`}
+                    value={`${currentUrl}/publicAccess/${id}`}
                     className="px-2 py-2  border bg-[#1d1b1b]   border-[#64B5F6]  focus:border-none  focus:ring-[#64B5F6] focus:ring-offset-[#64B5F6] focus:ring-offset-1  rounded-lg"
                     placeholder="Enter a title for your snippet..."
                     readOnly
@@ -209,7 +209,7 @@ const ViewPublic = () => {
                 </div>
                 <div className="flex flex-col space-y-2 mt-4 items-center">
                   <QRCode
-                    value={`${currentUrl}/public-access/${id}`}
+                    value={`${currentUrl}/publicAccess/${id}`}
                     className="custom-shadow"
                     size={200}
                   />
@@ -249,7 +249,7 @@ const ViewPublic = () => {
         <div className="flex mt-5">
                   <input
                     type="text"
-                    value={`${currentUrl}/public-access/${id}`}
+                    value={`${currentUrl}/publicAccess/${id}`}
                     readOnly
                     name="share"
                     id="share"
@@ -263,7 +263,7 @@ const ViewPublic = () => {
                       type="button"
                       onClick={() =>
                         navigator.clipboard.writeText(
-                          `${currentUrl}/public-access/${id}`
+                          `${currentUrl}/publicAccess/${id}`
                         )
                       }
                     >
@@ -276,7 +276,7 @@ const ViewPublic = () => {
                   )}
                 </div>
                 <div className="flex w-64 h-52  mt-7 ml-4">
-                <QRCode value={`${currentUrl}/public-access/${id}`} size={200}  />
+                <QRCode value={`${currentUrl}/publicAccess/${id}`} size={200}  />
                 </div>
         </div>
        

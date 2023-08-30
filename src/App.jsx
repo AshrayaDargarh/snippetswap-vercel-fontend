@@ -52,11 +52,11 @@ export const appRouter=createBrowserRouter([{
     element:<ForgotPassword/>
    },
     {
-    path:'/auth/reset-password/:resetToken',
+    path:'/auth/reset-passwordFront/:resetToken',
     element:<ResetPassword/>
     }, 
     {
-      path:'/auth/verify/:token',
+      path:'/auth/verifyFront/:token',
       element:<DefaultVerify/>
     },
     {
@@ -84,7 +84,7 @@ export const appRouter=createBrowserRouter([{
       element:<Error/>
     },
     {
-        path:"/public-access/:id",
+        path:"/publicAccess/:id",
         element:<ViewPublic/>,
     }
   ]
