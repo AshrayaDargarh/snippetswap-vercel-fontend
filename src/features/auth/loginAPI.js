@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BACKEND_API } from "../../config";
+import { BACKEND_API } from "../../config"
 
 export function logUser(user)
 {

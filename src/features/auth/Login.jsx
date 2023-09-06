@@ -4,14 +4,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TailSpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAddAsync } from './loginSlice';
+import { loginAddAsync } from './authSlice';
 import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
   const[user,setUser]=useState({})
-  const isVerified=useSelector(state=>state.login.isVerified)
-  const logInfo=useSelector(state=>state.login.logInfo)
-  const isValid=useSelector(state=>state.login.error)
+  const isVerified=useSelector(state=>state.auth.isVerified)
+  const isValid=useSelector(state=>state.auth.error)
   const dispatch=useDispatch()
   const {login}=useAuth()
   const navigate=useNavigate()
@@ -22,21 +21,23 @@ const Login = () => {
       [e.target.name]:e.target.value
     })
   }
-  function handleSubmit(e)
+  async function handleSubmit(e)
   {
     e.preventDefault()
-    dispatch(loginAddAsync(user))  
-  }
-
-  useEffect(()=>{
-    console.log(logInfo)
-    if(logInfo.doc)
+    try {
+   
+    const response=await dispatch(loginAddAsync(user)).unwrap();
+    console.log(response.doc.isVerified)
+    if(response.doc.isVerified)
     {
-    login(logInfo.token)
-    navigate('/create')  
+      login(response.token)
+      navigate('/create')
     }
-
-  },[logInfo])
+    
+    } catch (error) {
+      console.log('Error',error)
+    }
+  }
 
   return (
     <div className=''>
