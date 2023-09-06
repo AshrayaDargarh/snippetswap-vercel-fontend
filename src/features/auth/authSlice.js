@@ -2,6 +2,7 @@ import { createAsyncThunk,createSlice } from "@reduxjs/toolkit"
 import { logUser } from "./loginAPI"
 import { regUser } from "./registerAPI"
 import { resetPassUser } from "./resetPasswordAPI"
+import { forgotPassUser } from "./forgotPasswordAPI"
 
 const initialState={
     logInfo:[],
@@ -38,6 +39,16 @@ export const resetPasswordAsync=createAsyncThunk(
         try {
             const res=await resetPassUser(resetToken,password)
             return res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+export const forgotPasswordAsync=createAsyncThunk(
+    'auth/forgotPassUser',
+    async(email)=>{
+        try {
+            const res=await forgotPassUser(email)            
         } catch (error) {
             console.log(error)
         }
