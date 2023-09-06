@@ -34,12 +34,12 @@ export const registerAddAsync=createAsyncThunk(
 )
 export const resetPasswordAsync=createAsyncThunk(
     'auth/resetPassUser',
-    async({id,password})=>{
+    async({resetToken,password})=>{
         try {
-            const res=await resetPassUser(id,password)
+            const res=await resetPassUser(resetToken,password)
             return res.data
         } catch (error) {
-            console.log('Error Reset=',error)
+            console.log(error)
         }
     }
 )
@@ -77,6 +77,9 @@ const authSlice=createSlice({
         })
         .addCase(registerAddAsync.pending,(state)=>{
             state.status='loading'
+        })
+        .addCase(resetPasswordAsync.fulfilled,(state)=>{
+            state.status='idel'
         })
     }
 })

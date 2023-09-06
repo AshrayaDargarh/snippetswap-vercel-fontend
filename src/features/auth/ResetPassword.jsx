@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { BACKEND_API } from '../config'
 import { useDispatch } from 'react-redux'
 import { resetPasswordAsync } from './authSlice'
 const ResetPassword = () => {
