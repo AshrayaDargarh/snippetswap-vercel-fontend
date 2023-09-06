@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     try
     {
      
-      const res=dispatch(forgotPasswordAsync(email))
+      const res=dispatch(forgotPasswordAsync(email)).unwrap()
       toast.promise(res, {
         pending: "Please wait email is on the way...",
         success: "Please check you mail.", 

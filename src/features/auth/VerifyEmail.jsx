@@ -1,11 +1,11 @@
-import axios from 'axios'
 import React, { useState } from 'react'
-import { BACKEND_API } from '../config'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { verifyEmailAsync } from './authSlice';
 const VerifyEmail = () => {
   const [email,setEmail]=useState('')
-
+  const dispatch=useDispatch()
     function handleChange(e)
     {
       setEmail({
@@ -16,7 +16,7 @@ const VerifyEmail = () => {
     {
       e.preventDefault()
       try {
-        const res= axios.post(`${BACKEND_API}/auth/manually-verify`,email)
+        const res= dispatch(verifyEmailAsync(email)).unwrap()
         toast.promise(res, {
           pending: "Please wait email is on the way...",
           success: "Please check your mail.", 
@@ -52,39 +52,6 @@ const VerifyEmail = () => {
          pauseOnHover
       />
   </div>
-  //   <div className='h-screen'>
-  //   <div className="flex justify-center mt-10">
-  //     <div className="bg-slate-800 drop-shadow-2xl rounded-md p-10 flex">
-  //       <form onSubmit={handleSubmit}>
-  //         <p className='text-xl'>Verify your email</p>
-  //         <div className='mt-3'>
-  //             <label htmlFor="email" className="block text-sm">
-  //               Enter your email
-  //             </label>
-  //             <input type="email" placeholder='name@company.com' name="email" id="email" className='bg-gray-500 px-2 w-72 mt-2 py-1 rounded-lg' onChange={handleChange} required/>
-  //           </div>
-  //           {/* {isValid===true && <span className='text-xs text-green-500'>Password updated successfully.</span>}
-  //           {isValid===false && <span className='text-xs text-red-500'>Link is expired please reset password again.</span>} */}
-  //         <div className="mt-4 flex flex-col items-center justify-center">
-  //           <button className="bg-sky-700 px-20 py-1 rounded-lg">Verify Email</button>
-  //         </div>
-         
-  //       </form>
-  //     </div>
-  //   </div>
-  //   <ToastContainer
-  //       position="top-center"
-  //       autoClose={4000}
-  //       hideProgressBar={false}
-  //       newestOnTop={false}
-  //       closeOnClick
-  //       rtl={false}
-  //       pauseOnFocusLoss
-  //       draggable
-  //       pauseOnHover
-  //       theme="dark"
-  //     />
-  // </div>
   )
 }
 

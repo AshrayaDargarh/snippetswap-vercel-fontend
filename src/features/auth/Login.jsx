@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TailSpin } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAddAsync } from './authSlice';
+import { handlePassword, handleVerify, loginAddAsync } from './authSlice';
 import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
@@ -54,7 +54,7 @@ const Login = () => {
             <input type="password" placeholder="• • • • • • • • "  id="password" name="password" className="px-4 py-2 border bg-[#1d1b1b] border-gray-300 rounded-lg"  onChange={handleChange} required/>
           </div>
           <div className="flex items-center justify-end mt-2">
-            <Link to='/forgotpassword'  className="text-[#64B5F6] hover:text-[#FFFFFF]">Forgot password?</Link>
+            <Link to='/forgotpassword'  className="text-[#64B5F6] hover:text-[#FFFFFF]" onClick={()=>dispatch(handlePassword())}>Forgot password?</Link>
           </div>
           <div className='mt-2'>
               <span className='text-xs text-red-500'>{isValid&&'Invalid credentials or user does not exist!'}</span>
@@ -63,7 +63,7 @@ const Login = () => {
               <span className='text-xs text-red-500'>{isVerified?'':'Please Verify your email.'}</span>
             </div>
             <div className='mt-1 text-xs'>
-            {isVerified?'':<Link to='/verifyemail' className='text-[#64B5F6] underline'>Verify Email</Link>}
+            {isVerified?'':<Link to='/verifyemail' className='text-[#64B5F6] underline' onClick={()=>dispatch(handleVerify())}>Verify Email</Link>}
             </div>
           <button type="submit" className="mt-4 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-[#FFFFFF] rounded-lg  w-full">Sign in</button>
         </form>

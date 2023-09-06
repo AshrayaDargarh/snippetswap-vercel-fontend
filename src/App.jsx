@@ -19,7 +19,8 @@ import ViewUpdate from './components/ViewUpdate'
 import ViewPublic from './components/ViewPublic'
 import Unauthorized from './components/Unauthorized'
 import DefaultVerify from './components/DefaultVerify'
-import VerifyEmail from './components/VerifyEmail'
+// import VerifyEmail from './components/VerifyEmail'
+import VerifyEmail from './features/auth/VerifyEmail'
 function App() {
   const [count, setCount] = useState(true)
   // const token=useLongIn()

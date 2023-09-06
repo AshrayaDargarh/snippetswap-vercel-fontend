@@ -3,6 +3,7 @@ import { logUser } from "./loginAPI"
 import { regUser } from "./registerAPI"
 import { resetPassUser } from "./resetPasswordAPI"
 import { forgotPassUser } from "./forgotPasswordAPI"
+import { verifyEmailUser } from "./verifyEmailAPI"
 
 const initialState={
     logInfo:[],
@@ -54,11 +55,27 @@ export const forgotPasswordAsync=createAsyncThunk(
         }
     }
 )
-
+export const verifyEmailAsync=createAsyncThunk(
+    'auth/verifyEmailUser',
+    async(email)=>{
+        try {
+            const rest=await verifyEmailUser(email)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
 const authSlice=createSlice({
     name:'auth',
     initialState,
-    reducers:{},
+    reducers:{
+        handleVerify:(state)=>{
+            state.isVerified=true
+        },
+        handlePassword:(state)=>{
+            state.error=false
+        }
+    },
     extraReducers:(builder)=>{
         builder
         .addCase(loginAddAsync.pending,(state)=>{
@@ -94,5 +111,5 @@ const authSlice=createSlice({
         })
     }
 })
-
+export const {handleVerify,handlePassword} =authSlice.actions
 export default authSlice.reducer
